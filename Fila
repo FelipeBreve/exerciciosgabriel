@@ -1,0 +1,175 @@
+#include <iostream>
+#include <fstream>
+#define NUMBER_STATIC 2
+
+using namespace std;
+
+class FilaSeq{
+	int capacidadeAtual;
+	int elementosFila;
+	int primeiro;
+	int ultimo;
+	int* fila;
+	
+	public:
+		FilaSeq(int capacidade)
+		{
+			capacidadeAtual = capacidade;
+			elementosFila = 0;
+			primeiro = -1;
+			//primeiro = 0;
+			ultimo = -1;
+			fila = new int[capacidade];
+		}
+		
+		bool inserirFila(int element){
+			if(isFull()){
+				//realocateFila(element);
+				return false;
+			}else{
+				ultimo = (ultimo+1 == capacidadeAtual ? 0 : ultimo+1);
+				if(elementosFila == 0){
+					primeiro = 0;
+				}
+				fila[ultimo] = element;
+				elementosFila++;
+				return true;
+			}	
+		}
+		
+		bool removeFila(){
+			if(isEmpty()){
+				return false;
+			}else{
+				primeiro = (primeiro+1 == capacidadeAtual ? 0 : primeiro+1);
+				elementosFila--;
+				return true;
+			}
+		}
+		
+		bool isEmpty(){
+			return (elementosFila == 0 ? true : false);
+		}
+		
+		bool isFull(){
+			return (elementosFila == capacidadeAtual ? true : false);
+		}
+		
+		void firstElementFila(){
+			if(elementosFila == 0){
+				cout << "Nao existe elementos na fila\n";
+			}else{
+				cout << "Primeiro Elemento :" << fila[ultimo] << endl; 
+			}
+		}
+		
+		void lastElementFila(){
+			if(elementosFila == 0){
+				cout << "Nao existe elementos na fila\n";
+			}else{
+				cout << "Ultimo Elemento :" << fila[primeiro] << endl; 
+			}
+		}
+		
+		void sizeFila(){
+			cout << "Tamanho da fila :" << elementosFila << endl;
+		}
+		
+		void realocateFila(int element){
+			int* newFila = new int[capacidadeAtual * NUMBER_STATIC];
+			int count = 0;
+			int primeiro_aux = (primeiro == -1 ? 0 : primeiro);
+			
+			while(count != elementosFila)
+			{
+				//cout << "Elementos : " << fila[primeiro_aux] << endl;
+				newFila[count] = fila[primeiro_aux];
+				primeiro_aux = (primeiro_aux+1 == capacidadeAtual ? 0 : primeiro_aux+1);
+				count++;
+			}
+			capacidadeAtual *= NUMBER_STATIC;
+			elementosFila++;
+			primeiro = 0;
+			ultimo = count;
+			newFila[count] = element;
+			fila = newFila;
+			
+			
+		}
+		
+		void imprimirLista(){
+			int count = 0;
+			int primeiro_aux = (primeiro == -1 ? 0 : primeiro);
+			
+			while(count != elementosFila)
+			{
+				cout << "Elementos : " << fila[primeiro_aux] << endl;
+				primeiro_aux = (primeiro_aux+1 == capacidadeAtual ? 0 : primeiro_aux+1);
+				count++;
+			}
+		}
+		
+		
+};
+
+int main()
+{
+	int opc = 0;
+	FilaSeq fila = FilaSeq(2);
+	int element = 0;
+	int realoc = 0;
+	while(opc != 7){
+		
+		cout << "----------- Fila -------------" << endl;
+		cout << "1 - Inserir Elemento na fila" << endl;
+		cout << "2 - Remover Elemento na fila" << endl;
+		cout << "3 - Primeiro Elemento da fila" << endl;
+		cout << "4 - Ultimo Elemento da fila" << endl;
+		cout << "5 - Tamanho da fila" << endl;
+		cout << "6 - Imprimir Lista" << endl;
+ 		cout << "Digite sua opcao :";
+		cin >> opc;
+		system("CLS");
+		switch(opc){
+			case 1:
+				cout << "Digite o elemento:";
+				cin >> element;
+				if(fila.inserirFila(element))
+				{
+					cout << "Inserido com sucesso\n";
+				}else{
+					cout << "Você deseja realocar para um vetor maior: 1 - Sim / 0 - Nao: ";
+					cin >> realoc;
+					if(realoc)
+						fila.realocateFila(element);
+					else
+						cout << "Fila está cheia\n";
+				}
+				
+			break;
+			case 2:
+				if(fila.removeFila()){
+					cout << "Item removido com sucesso\n";
+				}else{
+					cout << "Fila vazia\n";
+				}
+			break;
+			case 3:
+				fila.firstElementFila();
+			break;
+			case 4:
+				fila.lastElementFila();
+			break;
+			case 5:
+				fila.sizeFila();
+			break;
+			case 6:
+				fila.imprimirLista();
+			break;
+		}  
+	}	
+	
+	return 0;
+}
+
+
