@@ -2,6 +2,8 @@
 #include <fstream>
 #define NUMBER_STATIC 2
 
+
+
 using namespace std;
 
 class FilaSeq{
