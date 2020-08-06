@@ -6,8 +6,13 @@ using namespace std;
 
 class FilaSeq{
 	int capacidadeAtual;
+<<<<<<< HEAD
 	int elementosFilaaaaaaaaaaaaaaaaaaa;
 	int primeiroa;
+=======
+	int elementosFila;
+	int primeiro;
+>>>>>>> parent of e439970... Teste 01
 	int ultimo;
 	int* fila;
 	
