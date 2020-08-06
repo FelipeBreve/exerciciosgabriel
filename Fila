@@ -8,7 +8,7 @@ using namespace std;
 
 class FilaSeq{
 	int capacidadeAtual;
-	int elementosFila;
+	int elementosFilaaaaaaaaaaaaaaaaaa;
 	int primeiro;
 	int ultimo;
 	int* fila;
