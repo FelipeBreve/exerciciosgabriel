@@ -13,6 +13,8 @@ class FilaSeq{
 	int ultimo;
 	int* fila;
 	
+	SEI LA
+	
 	public:
 		FilaSeq(int capacidade)
 		{
