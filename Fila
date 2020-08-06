@@ -8,8 +8,13 @@ using namespace std;
 
 class FilaSeq{
 	int capacidadeAtual;
+<<<<<<< HEAD
 	int elementosFilaaaaaaaaaaaaaaaaaa;
 	int primeiro;
+=======
+	int elementosFilaaaaaaaaaaaaaaaaaaa;
+	int primeiroa;
+>>>>>>> parent of 9d8f517... Revert real
 	int ultimo;
 	int* fila;
 	
