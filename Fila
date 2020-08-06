@@ -9,7 +9,7 @@ using namespace std;
 class FilaSeq{
 	int capacidadeAtual;
 	int elementosFila;
-	int primeiro;
+	int primeiroa;
 	int ultimo;
 	int* fila;
 	
